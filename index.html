@@ -7,40 +7,32 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="./src/script.js"></script>
   </head>
-  <body class="w-screen h-screen">
-    <nav class="flex items-baseline gap-x-5 px-6 py-3 bg-slate-300">
-      <h1 class="text-cyan-700 font-semibold text-xl font-serif">The Meal</h1>
-      <ul class="flex gap-x-3 text-zinc-50">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="./src/views/categories.html">Categories</a></li>
-        <li><a href="./src/views/about.html">About</a></li>
-      </ul>
-    </nav>
-    <section class="px-8 py-4 pt-10">
-      <h1 class="text-center text-4xl font-semibold">Healty food never been this tasty</h1>
-      <h2 class="text-center opacity-70">Cook your own food</h2>
-      <div></div>
-    </section>
-    <footer class="px-8 py-4 bg-orange-700">
-      <div class="flex gap-x-5">
-        <div>
-          <h1 class="text-cyan-700 font-semibold text-xl text-center">The Meal</h1>
-
-          <div class="flex flex-col items-center">
-            <h3>Follow Us</h3>
-            <div class="flex">
-              <img class="w-10 h-10" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="instagram" />
-              <img class="h-10" src="https://1000logos.net/wp-content/uploads/2019/06/Tiktok_Logo.png" alt="tiktok" />
-              <img class="h-10" src="https://img.freepik.com/free-icon/youtube_318-183441.jpg" alt="youtube" />
-            </div>
-          </div>
-        </div>
-        <ul class="text-white">
-          <li><a href="">Home</a></li>
-          <li><a href="">Categories</a></li>
-          <li><a href="">About</a></li>
+  <body class="w-screen h-screen bg-[#EFF7F7] flex justify-center">
+    <div class="w-11/12 mt-5">
+      <nav class="flex items-baseline gap-x-5 px-4 py-2 bg-white rounded-t-lg justify-between">
+        <h1 class="font-semibold text-xl">The Meal</h1>
+        <ul class="flex gap-x-3 text-black items-center">
+          <li class="text-[#55BDB3]"><a href="index.html">Home</a></li>
+          <li><a href="./src/views/categories.html">Categories</a></li>
+          <li><a href="./src/views/about.html">About</a></li>
+          <li class="bg-[#55BDB3] px-2 py-1 text-zinc-50 rounded hover:bg-[#2e7770] active:bg-[#55BDB3]"><a href="#">Signup</a></li>
+          <li class="border-solid border-[#55BDB3] border-2 px-2 py-[1.8px] rounded"><a href="#">Login</a></li>
         </ul>
-      </div>
-    </footer>
+      </nav>
+      <section class="bg-[url('./src/assets/meals.jpeg')] bg-cover bg-opacity-50 h-[527px]">
+        <div class="px-8 py-4 pt-24 flex flex-col gap-y-2">
+          <h1 class="text-6xl font-semibold text-[#2e7770] shadow-xl"><span class="text-zinc-50">Healty</span> food has never <br />been this <span class="text-yellow-400">tasty</span></h1>
+          <h2 class="text-2xl text-emerald-900 bg-yellow-400 rounded w-max px-3 py-1">Cook your own food. Be HAPPY, Be HEALTHY.</h2>
+          <button class="bg-[#55BDB3] text-zinc-50 px-6 py-1 rounded w-max">Browse</button>
+        </div>
+      </section>
+      <footer class="px-8 py-4 bg-[#55BDB3] flex justify-center">
+        <div class="flex justify-center w-8/12 px-6 py-2 items-center">
+          <img class="w-10 h-10" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/1024px-Instagram_logo_2022.svg.png" alt="instagram" />
+          <img class="h-10" src="https://1000logos.net/wp-content/uploads/2019/06/Tiktok_Logo.png" alt="tiktok" />
+          <img class="h-10" src="https://img.freepik.com/free-icon/youtube_318-183441.jpg" alt="youtube" />
+        </div>
+      </footer>
+    </div>
   </body>
 </html>
