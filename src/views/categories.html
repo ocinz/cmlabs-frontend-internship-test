@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="w-screen h-screen">
+    <nav class="flex items-baseline gap-x-5 px-6 py-3 bg-slate-300">
+      <h1 class="text-cyan-700 font-semibold text-xl font-serif">The Meal</h1>
+      <ul class="flex gap-x-3 text-zinc-50">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="./src/views/categories.html">Categories</a></li>
+        <li><a href="./src/views/about.html">About</a></li>
+      </ul>
+    </nav>
+    <h1 class="text-center">This is the categories page</h1>
+    <div class="px-8 py-4" id="item"></div>
+  </body>
+  <script>
+    const showData = async () => {
+      const response = await fetch("https://www.themealdb.com/api/json/v1/1/categories.php");
+      const jsonData = await response.json();
+      let data = jsonData.categories;
+      let show = document.createElement("div");
+      show.className = "grid grid-cols-5 gap-2";
+      for (let index = 0; index < data.length; index++) {
+        const element = document.createElement("a");
+        element.innerText = data[index].strCategory;
+        element.className = "cursor-pointer bg-slate-400 text-white text-center rounded ";
+        show.appendChild(element);
+      }
+
+      document.getElementById("item").appendChild(show);
+    };
+    showData();
+  </script>
+</html>
