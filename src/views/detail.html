@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <h1 class="text-6xl text-red-500">This is detail menu page</h1>
+    <img id="image" alt="" />
+  </body>
+  <script>
+    const getData = async () => {
+      try {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const menu = urlParams.get("menu");
+        const menuId = urlParams.get("id");
+        document.title = menu;
+        const fetching = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${menuId}`);
+        const jsonData = await fetching.json();
+        const data = jsonData.meals[0];
+        return data;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getData();
+  </script>
+</html>
