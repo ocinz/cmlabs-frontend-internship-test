@@ -33,15 +33,23 @@
       const jsonData = await response.json();
       let data = jsonData.categories;
       let show = document.createElement("div");
-      show.className = "grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-2";
+      show.className = "grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 gap-2";
+
       for (let index = 0; index < data.length; index++) {
-        const element = document.createElement("a");
+        const element = document.createElement("div");
+
         const category = data[index].strCategory;
         const image = data[index].strCategoryThumb;
         const id = data[index].idCategory;
-        element.innerText = category;
-        element.href = `category.html?id=${id}&category=${category}`;
-        element.className = `cursor-pointer bg-[url(${image})] text-white text-center rounded h-24 align-middle bg-cover bg-center hover:bg-slate-500 `;
+        const coba = `
+        <a href="category.html?category=${category}">
+        <div class="cursor-pointer bg-[url(${image})] text-white  rounded h-24 bg-cover bg-center ">
+          <div class="flex items-center justify-center w-full h-full text-center bg-opacity-50 rounded bg-slate-800">
+            <p  class="w-10/12 font-semibold ">${category}</p>
+          </div>
+        </div> </a>
+        `;
+        element.innerHTML = coba;
         show.appendChild(element);
       }
 
