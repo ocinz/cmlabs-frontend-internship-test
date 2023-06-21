@@ -4,23 +4,181 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1 class="text-6xl text-red-500">This is detail menu page</h1>
-    <img id="image" alt="" />
+  <body class="w-screen h-screen bg-[#EFF7F7] flex justify-center">
+    <div class="w-11/12 mt-5 rounded-t-lg">
+      <nav class="flex items-baseline justify-between px-4 py-2 bg-white rounded-t-lg gap-x-5">
+        <a href="#"><h1 class="text-xl font-semibold">Meal App</h1></a>
+        <ul class="flex items-center text-black gap-x-3">
+          <li class="text-[#55BDB3]"><a href="index.html">Home</a></li>
+          <li><a href="./src/views/categories.html">Categories</a></li>
+          <li><a href="./src/views/about.html">About</a></li>
+          <li class="bg-[#55BDB3] px-2 py-1 text-zinc-50 rounded hover:bg-[#2e7770] active:bg-[#55BDB3]"><a href="#">Signup</a></li>
+          <li class="border-solid border-[#55BDB3] border-2 px-2 py-[1.8px] rounded"><a href="#">Login</a></li>
+        </ul>
+      </nav>
+      <section class="bg-opacity-50 h-[475px] flex flex-col gap-y-5">
+        <header class="flex flex-col justify-center h-16 pb-5 bg-white rounded-b-xl">
+          <h2 class="pl-20 font-serif text-4xl font-light text-left" id="menuTitle"></h2>
+        </header>
+        <main id="main" class=""></main>
+      </section>
+    </div>
   </body>
   <script>
+    const getUrlParams = () => {
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      return urlParams;
+    };
+
     const getData = async () => {
       try {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const menu = urlParams.get("menu");
+        //getting url params
+        const urlParams = getUrlParams();
         const menuId = urlParams.get("id");
-        document.title = menu;
+
+        //fetching data
         const fetching = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${menuId}`);
         const jsonData = await fetching.json();
+
+        //parsing data
         const data = jsonData.meals[0];
-        return data;
+        const {
+          idMeal,
+          strMeal,
+          strDrinkAlternate,
+          strCategory,
+          strArea,
+          strInstructions,
+          strMealThumb,
+          strTags,
+          strYoutube,
+          strIngredient1,
+          strIngredient2,
+          strIngredient3,
+          strIngredient4,
+          strIngredient5,
+          strIngredient6,
+          strIngredient7,
+          strIngredient8,
+          strIngredient9,
+          strIngredient10,
+          strIngredient11,
+          strIngredient12,
+          strIngredient13,
+          strIngredient14,
+          strIngredient15,
+          strIngredient16,
+          strIngredient17,
+          strIngredient18,
+          strIngredient19,
+          strIngredient20,
+          strMeasure1,
+          strMeasure2,
+          strMeasure3,
+          strMeasure4,
+          strMeasure5,
+          strMeasure6,
+          strMeasure7,
+          strMeasure8,
+          strMeasure9,
+          strMeasure10,
+          strMeasure11,
+          strMeasure12,
+          strMeasure13,
+          strMeasure14,
+          strMeasure15,
+          strMeasure16,
+          strMeasure17,
+          strMeasure18,
+          strMeasure19,
+          strMeasure20,
+          strSource,
+          strImageSource,
+          strCreativeCommonsConfirmed,
+        } = data;
+
+        //change document title
+        document.title = `${strMeal} | Meal App`;
+
+        //loop for Ingredients
+        const ingredients = [
+          strIngredient1,
+          strIngredient2,
+          strIngredient3,
+          strIngredient4,
+          strIngredient5,
+          strIngredient6,
+          strIngredient7,
+          strIngredient8,
+          strIngredient9,
+          strIngredient10,
+          strIngredient11,
+          strIngredient12,
+          strIngredient13,
+          strIngredient14,
+          strIngredient15,
+          strIngredient16,
+          strIngredient17,
+          strIngredient18,
+          strIngredient19,
+          strIngredient20,
+        ];
+        const measures = [
+          strMeasure1,
+          strMeasure2,
+          strMeasure3,
+          strMeasure4,
+          strMeasure5,
+          strMeasure6,
+          strMeasure7,
+          strMeasure8,
+          strMeasure9,
+          strMeasure10,
+          strMeasure11,
+          strMeasure12,
+          strMeasure13,
+          strMeasure14,
+          strMeasure15,
+          strMeasure16,
+          strMeasure17,
+          strMeasure18,
+          strMeasure19,
+          strMeasure20,
+        ];
+
+        let materials = "";
+        for (let index = 0; index < 20; index++) {
+          if (!ingredients[index]) {
+            continue;
+          }
+          const material = `<li class="text-sm list-disc list-inside indent-2">${ingredients[index]}: ${measures[index]}</li>`;
+          materials += material;
+        }
+
+        //change string youtbe from watch to embed
+        const youtube = strYoutube.replace("watch?v=", "embed/");
+        const content = `
+        <div class=" bg-[#55BDB3] rounded-xl py-4 text-white">
+          <div class="flex w-10/12 mx-auto">
+            <div class="flex flex-col w-1/2">
+              <img src=${strMealThumb} class="rounded-xl w-[400px] h-[400px] mb-[20px]">
+              <h2 class="font-semibold">Ingredients</h2>
+              <ul class="flex flex-col">${materials}</ul>
+            </div>
+            <div class="w-1/2 px-4">
+              <p class="text-sm text-justify indent-4">${strInstructions}</p>
+            </div>
+          </div>
+          <iframe class="mx-auto mt-5 mb-5 rounded" src=${youtube} width="560" height="315" frameborder="0" allowfullscreen></iframe>
+        </div>`;
+
+        document.getElementById("main").innerHTML = content;
+        document.getElementById("menuTitle").innerText = strMeal;
+        console.log(strYoutube);
+        console.log(youtube);
       } catch (error) {
         console.log(error);
       }
